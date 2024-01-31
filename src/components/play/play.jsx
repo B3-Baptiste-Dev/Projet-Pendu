@@ -174,18 +174,18 @@ console.log(word)
                 gameOver ? (
                     <div>
                         {lost ? (
-                            <div className="lose-message" style={{ color: 'white' }}>Perdu! Le mot était {word}</div>
+                            <div className="lose-message">Perdu! Le mot était {word}</div>
                         ) : (
                             <div className="win-message">Gagné ! Entrez votre nom:</div>
                         )}
-                        <input type="text" value={winnerName} onChange={handleWinnerNameChange} />
-                        <button onClick={handleSaveWinner}>Enregistrer</button>
+                        <input className="propose-word-input" type="text" value={winnerName} onChange={handleWinnerNameChange} />
+                        <button className="propose-word-button" onClick={handleSaveWinner}>Enregistrer</button>
                     </div>
                 ) : (
                     <div className="lose-message">Perdu ! Le mot était {word} </div>
                 )
             )}
-            {gameOver && <button onClick={handleRestart}>Recommencer</button>}
+            {gameOver && <button className="propose-word-button" onClick={handleRestart}>Recommencer</button>}
         </div>
     );
 }
