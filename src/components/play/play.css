@@ -1,0 +1,60 @@
+/* play.css */
+.play {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hangman-container {
+    margin-bottom: 20px;
+}
+
+.hangman-image {
+    /* Ajoutez des styles pour l'image si nécessaire */
+}
+
+.word-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.letter {
+    border-bottom: 2px solid black;
+    margin: 0 5px;
+    padding: 5px;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+.letter-buttons button {
+    margin: 5px;
+    padding: 5px 10px;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.letter-buttons button:disabled {
+    color: grey;
+    cursor: not-allowed;
+}
+
+.propose-word-container {
+    margin-top: 20px;
+}
+
+.propose-word-input {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.propose-word-button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
