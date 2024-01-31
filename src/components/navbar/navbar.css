@@ -1,0 +1,24 @@
+nav {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.links {
+    display: flex;
+    width: 100%;
+    list-style: none;
+    margin-left: -35px;
+    justify-content: center; /* Align links to the right */
+}
+
+li {
+    padding: 0 20px; /* Adjust margin for spacing */
+}
+
+.link {
+    font-weight: bold;
+    font-size: 1rem;
+    color: var(--titleColor);
+    text-decoration: none;
+}

@@ -1,0 +1,25 @@
+.home {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.container {
+    max-width: 768px;
+}
+
+p{
+    text-align: justify;
+}
+
+img {
+    max-width: 600px;
+    width: 100%;
+}
+
+@media screen and (max-width: 890px) {
+
+    img {
+        width: 70%;
+    }
+}
