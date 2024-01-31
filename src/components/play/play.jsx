@@ -189,14 +189,13 @@ const Play = () => {
             )}
             {gameOver && (
                 gameOver ? (
-                    <div>
+                    <div className="propose-container">
                         {lost ? (
                             <div className="lose-message">Perdu! Le mot était {word}</div>
                         ) : (
                             <div className="win-message">Gagné ! Entrez votre nom:</div>
                         )}
-                        <input className="propose-word-input" type="text" value={winnerName}
-                               onChange={handleWinnerNameChange}/>
+                        <input className="propose-word-input" type="text" value={winnerName} onChange={handleWinnerNameChange}/>
                         <button className="propose-word-button" onClick={handleSaveWinner}>Enregistrer</button>
                         <button className="propose-word-button" onClick={handleContinueGame}>Continuer à jouer</button>
                     </div>
@@ -204,7 +203,9 @@ const Play = () => {
                     <div className="lose-message">Perdu ! Le mot était {word} </div>
                 )
             )}
-            {gameOver && <button className="propose-word-button" onClick={handleRestart}>Recommencer</button>}
+            <div className="propose-container">
+                {gameOver && <button className="propose-word-button" onClick={handleRestart}>Recommencer</button>}
+            </div>
         </div>
     );
 }

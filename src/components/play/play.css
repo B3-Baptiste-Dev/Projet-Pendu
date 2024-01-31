@@ -1,5 +1,4 @@
 .play {
-    margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,7 +10,7 @@
 }
 
 .hangman-image {
-    max-width: 200px;
+    max-width: 150px;
     width: 100%;
 }
 
@@ -59,10 +58,16 @@
     padding: 10px;
 }
 
+.propose-container {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
 .propose-word-input {
     max-width: 205px;
     padding: 10px 15px;
-    margin: 0 10px 10px 0;
+    margin: auto;
     border: none;
     font-size: 1rem;
     font-weight: 500;
@@ -107,6 +112,7 @@
         justify-content: center;
         width: 100%;
         text-align: center;
+        margin-bottom: 20px;
     }
 }
 
