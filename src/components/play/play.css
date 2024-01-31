@@ -10,6 +10,8 @@
 }
 
 .hangman-image {
+    max-width: 300px;
+    width: 100%;
 }
 
 .word-container {
@@ -95,5 +97,11 @@
         justify-content: center;
         width: 100%;
         text-align: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hangman-image {
+        width: 30%;
     }
 }

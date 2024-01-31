@@ -148,7 +148,7 @@ console.log(word)
     return (
         <div className="play">
             <div className="hangman-container">
-                <img src={`/${tries}.jpg`} alt="Hangman" className="hangman-image" />
+                <img src={`/${tries}.png`} alt="Hangman" className="hangman-image" />
             </div>
             <div className="word-container">
                 {guessed.map((letter, index) => (
