@@ -18,6 +18,7 @@ const Play = () => {
     const [gameOver, setGameOver] = useState(false);
     const [proposedWord, setProposedWord] = useState('');
     const [lost, setLost] = useState(false);
+    const [points, setPoints] = useState(0);
 
     useEffect(() => {
         fetchWord();
@@ -49,6 +50,10 @@ const Play = () => {
     };
 
     const handleGuess = (letter) => {
+        if (newGuessed.join('') === word) {
+            setGameOver(true);
+            setPoints(points + 2); // +2 points pour trouver le mot uniquement grâce aux lettres
+        }
         if (gameOver || guessed.includes(letter) || wrongLetters.includes(letter) || lost) return;
 
         if (word.includes(letter)) {
@@ -76,12 +81,24 @@ console.log(word)
         setProposedWord('');
         setLost(false);
     };
+    const handleContinueGame = () => {
+        fetchWord();
+        setTries(0);
+        setWrongLetters([]);
+        setGameOver(false);
+        setProposedWord('');
+        setLost(false);
+    };
 
     const handleProposeWord = () => {
         if (proposedWord.toUpperCase() === word) {
             setGuessed(word.split(''));
             setGameOver(true);
+            setLost(false);
+            const lettersLeft = word.split('').filter(l => !guessed.includes(l)).length;
+            setPoints(points + 2 + lettersLeft); // +2 points et +1 pour chaque lettre restante
         } else {
+            setPoints(points - 2);
             const newTries = tries + 1;
             setTries(newTries);
             if (newTries >= maxTries) {
@@ -97,22 +114,28 @@ console.log(word)
 
     const handleSaveWinner = () => {
         const savedPlayerData = JSON.parse(localStorage.getItem('playerData')) || {};
+
         if (winnerName) {
             if (!savedPlayerData[winnerName]) {
-                savedPlayerData[winnerName] = { victories: 0, gamesPlayed: 0, losses: 0 };
+                savedPlayerData[winnerName] = { victories: 0, gamesPlayed: 0, losses: 0, points: 0 };
             }
+
             savedPlayerData[winnerName].gamesPlayed += 1;
+
             if (!lost) {
                 savedPlayerData[winnerName].victories += 1;
+                savedPlayerData[winnerName].points = (savedPlayerData[winnerName].points || 0) + points;
             } else {
                 savedPlayerData[winnerName].losses += 1;
             }
+
             localStorage.setItem('playerData', JSON.stringify(savedPlayerData));
             setWinnerName('');
         }
 
         handleRestart();
     };
+
 
     const renderButton = (letter) => (
         <button
@@ -169,8 +192,10 @@ console.log(word)
                         ) : (
                             <div className="win-message">Gagné ! Entrez votre nom:</div>
                         )}
-                        <input className="propose-word-input" type="text" value={winnerName} onChange={handleWinnerNameChange} />
+                        <input className="propose-word-input" type="text" value={winnerName}
+                               onChange={handleWinnerNameChange}/>
                         <button className="propose-word-button" onClick={handleSaveWinner}>Enregistrer</button>
+                        <button className="propose-word-button" onClick={handleContinueGame}>Continuer à jouer</button>
                     </div>
                 ) : (
                     <div className="lose-message">Perdu ! Le mot était {word} </div>

@@ -36,7 +36,7 @@ function Statistics() {
     };
 
     const data = selectedPlayer ? {
-        labels: ['Victoires', 'Parties Jouées', 'Défaites'],
+        labels: ['Victoires', 'Parties Jouées', 'Défaites', 'Points'],
         datasets: [
             {
                 label: `Statistiques de ${selectedPlayer}`,
