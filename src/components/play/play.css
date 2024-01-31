@@ -35,15 +35,19 @@
     margin: 5px;
     padding: 10px 15px;
     border: none;
-    background-color: var(--fluoColor);
+    background: var(--fluoColor);
     color: var(--titleColor);
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
+.letter-buttons button:hover {
+    background: var(--fluoColorHover);
+}
+
 .letter-buttons button:disabled {
-    color: grey;
+    background: var(--bgColor);
     cursor: not-allowed;
 }
 
@@ -68,17 +72,22 @@
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
+    background: var(--fluoColor);
     color: white;
     font-weight: 500;
     cursor: pointer;
     font-size: 1rem;
 }
 
+.propose-word-button:hover {
+    background: var(--fluoColorHover);
+}
+
 .win-message {
     color: white;
     font-size: 24px;
 }
+
 @media screen and (max-width: 890px) {
     .propose-word-input,
     .propose-word-button {
