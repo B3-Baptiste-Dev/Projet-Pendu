@@ -5,6 +5,7 @@
 }
 
 .hangman-container {
+    text-align: center;
     margin-bottom: 20px;
 }
 
@@ -25,13 +26,18 @@
 }
 .letter-buttons {
     text-align: center;
-
 }
+.letter-buttons {
+    text-align: center;
+}
+
 .letter-buttons button {
     margin: 5px;
-    padding: 5px 10px;
+    padding: 10px 15px;
     border: none;
-    background-color: white;
+    background-color: var(--fluoColor);
+    color: var(--titleColor);
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -43,22 +49,42 @@
 
 .propose-word-container {
     margin-top: 20px;
+    padding: 10px;
 }
 
 .propose-word-input {
-    padding: 5px;
-    margin-right: 10px;
+    max-width: 205px;
+    padding: 10px 15px;
+    margin: 0 10px 10px 0;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 5px;
+    color: var(--titleColor);
+    background: var(--btnColor);
 }
 
 .propose-word-button {
-    padding: 5px 10px;
+    padding: 10px 15px;
     border: none;
+    border-radius: 5px;
     background-color: #007bff;
     color: white;
+    font-weight: 500;
     cursor: pointer;
+    font-size: 1rem;
 }
 
 .win-message {
     color: white;
     font-size: 24px;
+}
+@media screen and (max-width: 890px) {
+    .propose-word-input,
+    .propose-word-button {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        text-align: center;
+    }
 }
