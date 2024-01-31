@@ -4,7 +4,6 @@ import './play.css';
 
 const maxTries = 6;
 
-
 const Play = () => {
     const [word, setWord] = useState('');
     const [guessed, setGuessed] = useState([]);
