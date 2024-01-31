@@ -17,7 +17,7 @@ const Play = () => {
     const [winnerName, setWinnerName] = useState('');
     const [gameOver, setGameOver] = useState(false);
     const [proposedWord, setProposedWord] = useState('');
-    const [lost, setLost] = useState(false); // Nouvelle variable d'état pour la défaite
+    const [lost, setLost] = useState(false);
 
     useEffect(() => {
         fetchWord();
@@ -49,7 +49,7 @@ const Play = () => {
     };
 
     const handleGuess = (letter) => {
-        if (gameOver || guessed.includes(letter) || wrongLetters.includes(letter)) return;
+        if (gameOver || guessed.includes(letter) || wrongLetters.includes(letter) || lost) return;
 
         if (word.includes(letter)) {
             const newGuessed = guessed.map((l, idx) => word[idx] === letter ? letter : l);
@@ -60,6 +60,10 @@ const Play = () => {
         } else {
             setTries(tries + 1);
             setWrongLetters([...wrongLetters, letter]);
+            if (tries + 1 >= maxTries) {
+                setLost(true);
+                setGameOver(true);
+            }
         }
     };
 console.log(word)
@@ -86,6 +90,7 @@ console.log(word)
             }
         }
     };
+
 
     const handleWinnerNameChange = (e) => {
         setWinnerName(e.target.value);
@@ -119,16 +124,22 @@ console.log(word)
     };
 
 
+
     const renderButton = (letter) => (
         <button
             key={letter}
-            onClick={() => handleGuess(letter)}
-            disabled={guessed.includes(letter) || wrongLetters.includes(letter) || loading}
+            onClick={() => {
+                if (!gameOver && !guessed.includes(letter) && !wrongLetters.includes(letter) && !loading) {
+                    handleGuess(letter);
+                }
+            }}
+            disabled={guessed.includes(letter) || wrongLetters.includes(letter) || loading || gameOver}
             className={guessed.includes(letter) || wrongLetters.includes(letter) ? 'guessed' : ''}
         >
             {letter}
         </button>
     );
+
 
     if (loading) {
         return <div className="loading">Chargement...</div>;
