@@ -26,11 +26,7 @@ function Statistics() {
     const [selectedPlayer, setSelectedPlayer] = useState(null);
 
     useEffect(() => {
-        const savedPlayerData = {
-            'Alice': { victories: 3, gamesPlayed: 10, losses: 2 },
-            'Bob': { victories: 2, gamesPlayed: 8, losses: 1 },
-            'Charlie': { victories: 5, gamesPlayed: 15, losses: 5 }
-        };
+        const savedPlayerData = JSON.parse(localStorage.getItem('playerData')) || { wins: {}, losses: 0 };
 
         setPlayerData(savedPlayerData);
     }, []);
