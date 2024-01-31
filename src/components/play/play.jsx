@@ -50,28 +50,31 @@ const Play = () => {
     };
 
     const handleGuess = (letter) => {
-        if (newGuessed.join('') === word) {
-            setGameOver(true);
-            setPoints(points + 2); // +2 points pour trouver le mot uniquement grâce aux lettres
-        }
         if (gameOver || guessed.includes(letter) || wrongLetters.includes(letter) || lost) return;
 
+        let newGuessed = guessed.slice(); // Créez une copie de l'état 'guessed'
+
         if (word.includes(letter)) {
-            const newGuessed = guessed.map((l, idx) => word[idx] === letter ? letter : l);
+            newGuessed = newGuessed.map((l, idx) => word[idx] === letter ? letter : l);
             setGuessed(newGuessed);
+
             if (newGuessed.join('') === word) {
                 setGameOver(true);
+                setPoints(points + 2); // +2 points pour trouver le mot uniquement grâce aux lettres
             }
         } else {
             setTries(tries + 1);
             setWrongLetters([...wrongLetters, letter]);
+
             if (tries + 1 >= maxTries) {
                 setLost(true);
                 setGameOver(true);
             }
         }
     };
-console.log(word)
+
+
+    console.log(word)
     const handleRestart = () => {
         fetchWord();
         setTries(0);
