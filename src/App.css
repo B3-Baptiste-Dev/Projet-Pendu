@@ -1,42 +1,69 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+* {
+    font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bgColor);
+
+    /*--bgColor: rgb(29, 29, 43);*/
+    --bgColor: rgb(0, 0, 20);
+    --titleColor: rgb(255, 255, 255);
+    --textColor: rgb(181, 185, 214);
+    --btnColor: rgb(48, 48, 67);
+    --fluoColor: rgb(19, 154, 255);
+
+    --btnColorHover: rgb(62, 62, 86);
+    --fluoColorHover: rgb(13, 125, 186);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+section {
+    padding: 0 2rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+h1, p, span, a {
+    transition-property: all;
+    transition-duration: .15s;
 }
 
-.card {
-  padding: 2em;
+h1 {
+    font-size: 3.75rem;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -.025em;
+    margin: 0;
+    color: var(--titleColor);
 }
 
-.read-the-docs {
-  color: #888;
+p {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    color: var(--textColor);
+}
+
+span {
+    color: var(--fluoColor);
+}
+
+/* Add this to style the scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--fluoColor);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--fluoColorHover);
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--btnColor);
+}
+
+::-webkit-scrollbar-track:hover {
+    background-color: var(--btnColorHover);
 }

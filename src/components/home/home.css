@@ -1,0 +1,18 @@
+.home {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.container {
+    max-width: 768px;
+}
+
+p{
+    text-align: justify;
+}
+
+img {
+    max-width: 700px;
+    width: 100%;
+}
