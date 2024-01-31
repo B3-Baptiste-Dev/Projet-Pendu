@@ -31,7 +31,7 @@
 }
 
 .winners-section li:hover, .losses-section li:hover {
-    background-color: #e9ecef;
+    background-color: var(--fluoColorHover);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
