@@ -35,7 +35,7 @@ function Statistics() {
 
     return (
         <div className="statistics">
-            <h2>Statistiques du Jeu du Pendu</h2>
+            <h2>Statistiques du <span>Jeu du Pendu</span></h2>
 
             <div className="winners-section">
                 <h3>Joueurs</h3>

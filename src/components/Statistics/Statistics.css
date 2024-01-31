@@ -1,18 +1,16 @@
 .statistics {
-    background-color: white;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 600px;
     margin: 20px auto;
     text-align: center;
-
+    color: var(--titleColor);
 }
 
 .winners-section, .losses-section, .player-graph-section {
     margin: 20px;
     padding: 15px;
-    background-color: #f8f9fa;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -26,7 +24,8 @@
     cursor: pointer;
     padding: 10px;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: var(--fluoColor);
+    color: var(--titleColor);
     margin-bottom: 10px;
     transition: background-color 0.3s, box-shadow 0.3s;
 }

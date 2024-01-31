@@ -22,7 +22,7 @@ section {
     padding: 0 2rem;
 }
 
-h1, p, span, a {
+h1, p, span {
     transition-property: all;
     transition-duration: .15s;
 }
@@ -44,6 +44,17 @@ p {
 
 span {
     color: var(--fluoColor);
+}
+
+@media screen and (max-width: 890px) {
+    h1 {
+        font-size: 3rem;
+        line-height: 1.05;
+    }
+
+    p {
+        padding: 0.425rem 0.55rem;
+    }
 }
 
 /* Add this to style the scrollbar */

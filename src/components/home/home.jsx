@@ -1,4 +1,3 @@
-import React from 'react';
 import pendu from '../../../public/pendu.svg'
 import '../home/home.css';
 
