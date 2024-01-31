@@ -47,7 +47,6 @@
 }
 
 .letter-buttons button:disabled {
-    color: var(--titleColor);
     background: var(--bgColor);
     cursor: not-allowed;
 }
