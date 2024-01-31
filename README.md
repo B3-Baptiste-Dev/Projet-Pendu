@@ -33,7 +33,7 @@ npm install
 🚀 Démarrage
 Pour lancer le jeu, exécutez :
 ```bash
-npm star
+npm start
 ```
 🧐 Règles du Jeu
 Chaque lettre correcte = 1 point.
