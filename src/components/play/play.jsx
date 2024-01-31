@@ -102,6 +102,14 @@ console.log(word)
                 savedPlayerData[winnerName] = { victories: 1, gamesPlayed: 1, losses: 0 };
             }
 
+            if (lost) {
+                if (savedPlayerData[winnerName].losses) {
+                    savedPlayerData[winnerName].losses += 1;
+                } else {
+                    savedPlayerData[winnerName].losses = 1;
+                }
+            }
+
             localStorage.setItem('playerData', JSON.stringify(savedPlayerData));
 
             setWinnerName('');
@@ -109,6 +117,7 @@ console.log(word)
 
         handleRestart();
     };
+
 
     const renderButton = (letter) => (
         <button
