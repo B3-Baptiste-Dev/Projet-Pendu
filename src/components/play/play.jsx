@@ -4,6 +4,9 @@ import './play.css';
 
 const maxTries = 6;
 
+function removeAccents(str) {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
 
 const Play = () => {
     const [word, setWord] = useState('');
@@ -14,6 +17,7 @@ const Play = () => {
     const [winnerName, setWinnerName] = useState('');
     const [gameOver, setGameOver] = useState(false);
     const [proposedWord, setProposedWord] = useState('');
+    const [lost, setLost] = useState(false); // Nouvelle variable d'état pour la défaite
 
     useEffect(() => {
         fetchWord();
@@ -31,8 +35,9 @@ const Play = () => {
             const motObject = mots[randomIndex];
             if (motObject && motObject.label) {
                 const randomMot = motObject.label;
-                setWord(randomMot.toUpperCase());
-                setGuessed(Array(randomMot.length).fill('_'));
+                const wordWithoutAccents = removeAccents(randomMot.toUpperCase());
+                setWord(wordWithoutAccents);
+                setGuessed(Array(wordWithoutAccents.length).fill('_'));
             } else {
                 throw new Error('Le mot récupéré est undefined ou non valide');
             }
@@ -57,7 +62,7 @@ const Play = () => {
             setWrongLetters([...wrongLetters, letter]);
         }
     };
-
+console.log(word)
     const handleRestart = () => {
         fetchWord();
         setTries(0);
@@ -65,6 +70,7 @@ const Play = () => {
         setGameOver(false);
         setWinnerName('');
         setProposedWord('');
+        setLost(false);
     };
 
     const handleProposeWord = () => {
@@ -75,18 +81,17 @@ const Play = () => {
             const newTries = tries + 1;
             setTries(newTries);
             if (newTries >= maxTries) {
+                setLost(true);
                 setGameOver(true);
             }
         }
     };
-
 
     const handleWinnerNameChange = (e) => {
         setWinnerName(e.target.value);
     };
 
     const handleSaveWinner = () => {
-        // Récupérer les données existantes du localStorage
         const savedPlayerData = JSON.parse(localStorage.getItem('playerData')) || {};
 
         if (winnerName) {
@@ -104,7 +109,6 @@ const Play = () => {
 
         handleRestart();
     };
-
 
     const renderButton = (letter) => (
         <button
@@ -149,12 +153,16 @@ const Play = () => {
             {gameOver && (
                 gameOver ? (
                     <div>
-                        <div className="win-message">Gagné! Entrez votre nom:</div>
+                        {lost ? (
+                            <div className="lose-message" style={{ color: 'white' }}>Perdu! Le mot était {word}</div>
+                        ) : (
+                            <div className="win-message">Gagné ! Entrez votre nom:</div>
+                        )}
                         <input type="text" value={winnerName} onChange={handleWinnerNameChange} />
                         <button onClick={handleSaveWinner}>Enregistrer</button>
                     </div>
                 ) : (
-                    <div className="lose-message">Perdu! Le mot était {word}</div>
+                    <div className="lose-message">Perdu ! Le mot était {word} </div>
                 )
             )}
             {gameOver && <button onClick={handleRestart}>Recommencer</button>}

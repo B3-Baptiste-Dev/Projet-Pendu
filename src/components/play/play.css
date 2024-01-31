@@ -1,4 +1,3 @@
-/* play.css */
 .play {
     display: flex;
     flex-direction: column;
@@ -10,7 +9,6 @@
 }
 
 .hangman-image {
-    /* Ajoutez des styles pour l'image si nécessaire */
 }
 
 .word-container {
@@ -20,13 +18,15 @@
 }
 
 .letter {
-    border-bottom: 2px solid black;
     margin: 0 5px;
     padding: 5px;
     font-size: 24px;
     text-transform: uppercase;
 }
+.letter-buttons {
+    text-align: center;
 
+}
 .letter-buttons button {
     margin: 5px;
     padding: 5px 10px;
@@ -58,3 +58,7 @@
     cursor: pointer;
 }
 
+.win-message {
+    color: white;
+    font-size: 24px;
+}
