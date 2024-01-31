@@ -1,6 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+} from 'chart.js';
 import './Statistics.css';
+
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+);
+
 
 function Statistics() {
     const [playerData, setPlayerData] = useState({});
@@ -32,6 +51,17 @@ function Statistics() {
             }
         ]
     } : {};
+    const options = {
+        scales: {
+            y: {
+                type: 'linear',
+                beginAtZero: true
+            },
+            x: {
+                type: 'category'
+            }
+        }
+    };
 
     return (
         <div className="statistics">
@@ -51,7 +81,7 @@ function Statistics() {
             {selectedPlayer && (
                 <div className="player-graph-section">
                     <h3>Statistiques de {selectedPlayer}</h3>
-                    <Bar data={data} />
+                    <Bar data={data} options={options} />
                 </div>
             )}
         </div>
