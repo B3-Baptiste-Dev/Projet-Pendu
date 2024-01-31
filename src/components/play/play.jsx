@@ -91,39 +91,28 @@ console.log(word)
         }
     };
 
-
     const handleWinnerNameChange = (e) => {
         setWinnerName(e.target.value);
     };
 
     const handleSaveWinner = () => {
         const savedPlayerData = JSON.parse(localStorage.getItem('playerData')) || {};
-
         if (winnerName) {
-            if (savedPlayerData[winnerName]) {
-                savedPlayerData[winnerName].victories = (savedPlayerData[winnerName].victories || 0) + 1;
-                savedPlayerData[winnerName].gamesPlayed = (savedPlayerData[winnerName].gamesPlayed || 0) + 1;
+            if (!savedPlayerData[winnerName]) {
+                savedPlayerData[winnerName] = { victories: 0, gamesPlayed: 0, losses: 0 };
+            }
+            savedPlayerData[winnerName].gamesPlayed += 1;
+            if (!lost) {
+                savedPlayerData[winnerName].victories += 1;
             } else {
-                savedPlayerData[winnerName] = { victories: 1, gamesPlayed: 1, losses: 0 };
+                savedPlayerData[winnerName].losses += 1;
             }
-
-            if (lost) {
-                if (savedPlayerData[winnerName].losses) {
-                    savedPlayerData[winnerName].losses += 1;
-                } else {
-                    savedPlayerData[winnerName].losses = 1;
-                }
-            }
-
             localStorage.setItem('playerData', JSON.stringify(savedPlayerData));
-
             setWinnerName('');
         }
 
         handleRestart();
     };
-
-
 
     const renderButton = (letter) => (
         <button
@@ -158,18 +147,20 @@ console.log(word)
             <div className="letter-buttons">
                 {'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(renderButton)}
             </div>
-            <div className="propose-word-container">
-                <input
-                    type="text"
-                    value={proposedWord}
-                    onChange={(e) => setProposedWord(e.target.value)}
-                    placeholder="Proposez un mot"
-                    className="propose-word-input"
-                />
-                <button onClick={handleProposeWord} className="propose-word-button">
-                    Proposer ce mot
-                </button>
-            </div>
+            {!gameOver && !lost && (
+                <div className="propose-word-container">
+                    <input
+                        type="text"
+                        value={proposedWord}
+                        onChange={(e) => setProposedWord(e.target.value)}
+                        placeholder="Proposez un mot"
+                        className="propose-word-input"
+                    />
+                    <button onClick={handleProposeWord} className="propose-word-button">
+                        Proposer ce mot
+                    </button>
+                </div>
+            )}
             {gameOver && (
                 gameOver ? (
                     <div>
