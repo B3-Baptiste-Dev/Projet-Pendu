@@ -197,15 +197,15 @@ const Play = () => {
                         )}
                         <input className="propose-word-input" type="text" value={winnerName} onChange={handleWinnerNameChange}/>
                         <button className="propose-word-button" onClick={handleSaveWinner}>Enregistrer</button>
-                        <button className="propose-word-button" onClick={handleContinueGame}>Continuer à jouer</button>
+                        <div className="propose-button-container">
+                            <button className="propose-word-button" onClick={handleContinueGame}>Continuer à jouer</button>
+                            <button className="propose-word-button" onClick={handleRestart}>Recommencer</button>
+                        </div>
                     </div>
                 ) : (
                     <div className="lose-message">Perdu ! Le mot était {word} </div>
                 )
             )}
-            <div className="propose-container">
-                {gameOver && <button className="propose-word-button" onClick={handleRestart}>Recommencer</button>}
-            </div>
         </div>
     );
 }
