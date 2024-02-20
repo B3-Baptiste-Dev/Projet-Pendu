@@ -1,6 +1,9 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useRef} from 'react';
+import wave from '../../assets/wave.svg';
+import bloodWave from '../../assets/bloodWave.svg';
 import './play.css';
+
 
 const maxTries = 6;
 
@@ -161,52 +164,81 @@ const Play = () => {
     }
 
     return (
-        <div className="play">
-            <div className="hangman-container">
-                <img src={`/${tries}.png`} alt="Hangman" className="hangman-image" />
+        <>
+            <div className="play">
+                <div className="hangman-container">
+                    <img src={`/${tries}.png`} alt="Hangman" className="hangman-image"/>
+                </div>
+                <div className="word-container">
+                    {guessed.map((letter, index) => (
+                        <span
+                            key={index}
+                            className="letter"
+                            style={{color: gameOver && lost ? "#FF0602" : "#139AFF"}}
+                        >
+                            {letter}
+                        </span>
+                    ))}
+                </div>
+                <div className="letter-buttons">
+                    {'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(renderButton)}
+                </div>
+                {!gameOver && !lost && (
+                    <div className="propose-word-container">
+                        <input
+                            type="text"
+                            value={proposedWord}
+                            onChange={(e) => setProposedWord(e.target.value)}
+                            placeholder="Proposez un mot"
+                            className="propose-word-input"
+                        />
+                        <button onClick={handleProposeWord} className="propose-word-button">
+                            Proposer ce mot
+                        </button>
+                    </div>
+                )}
+                {gameOver && (
+                    gameOver ? (
+                        <div className="propose-container">
+                            {lost ? (
+                                <div className="lose-message">Perdu! Le mot était {word}</div>
+                            ) : (
+                                <div className="win-message">Gagné ! Entrez votre nom:</div>
+                            )}
+                            <input className="propose-word-input" type="text" value={winnerName}
+                                   onChange={handleWinnerNameChange}/>
+                            <button className="propose-word-button" style={{background: "#FF0602"}}
+                                    onClick={handleSaveWinner}>Enregistrer
+                            </button>
+                            <div className="propose-button-container">
+                                <button className="propose-word-button" style={{background: "#FF0602"}}
+                                        onClick={handleContinueGame}>Continuer à jouer
+                                </button>
+                                <button className="propose-word-button" style={{background: "#FF0602"}}
+                                        onClick={handleRestart}>Recommencer
+                                </button>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="lose-message">Perdu ! Le mot était {word} </div>
+                    )
+                )}
             </div>
-            <div className="word-container">
-                {guessed.map((letter, index) => (
-                    <span key={index} className="letter">{letter}</span>
-                ))}
-            </div>
-            <div className="letter-buttons">
-                {'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(renderButton)}
-            </div>
-            {!gameOver && !lost && (
-                <div className="propose-word-container">
-                    <input
-                        type="text"
-                        value={proposedWord}
-                        onChange={(e) => setProposedWord(e.target.value)}
-                        placeholder="Proposez un mot"
-                        className="propose-word-input"
-                    />
-                    <button onClick={handleProposeWord} className="propose-word-button">
-                        Proposer ce mot
-                    </button>
+
+                {!gameOver && (
+                    <div className="ocean" style={{background: "#195871"}}>
+                        <div className="wave" style={{background: `url(${wave}) repeat-x`}}></div>
+                        <div className="wave wave2"></div>
+                    </div>
+            )}
+
+            {gameOver && (
+                <div className="ocean" style={{background: "#FF0602"}}>
+                    <div className="wave" style={{background: `url(${bloodWave}) repeat-x`}}></div>
+                    <div className="wave wave2"></div>
                 </div>
             )}
-            {gameOver && (
-                gameOver ? (
-                    <div className="propose-container">
-                        {lost ? (
-                            <div className="lose-message">Perdu! Le mot était {word}</div>
-                        ) : (
-                            <div className="win-message">Gagné ! Entrez votre nom:</div>
-                        )}
-                        <input className="propose-word-input" type="text" value={winnerName} onChange={handleWinnerNameChange}/>
-                        <button className="propose-word-button" onClick={handleSaveWinner}>Enregistrer</button>
-                        <div className="propose-button-container">
-                            <button className="propose-word-button" onClick={handleContinueGame}>Continuer à jouer</button>
-                            <button className="propose-word-button" onClick={handleRestart}>Recommencer</button>
-                        </div>
-                    </div>
-                ) : (
-                    <div className="lose-message">Perdu ! Le mot était {word} </div>
-                )
-            )}
-        </div>
+        </>
     );
 }
 

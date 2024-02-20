@@ -6,6 +6,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--bgColor);
+    overflow-x: hidden;
 
     /*--bgColor: rgb(29, 29, 43);*/
     --bgColor: rgb(0, 0, 20);
@@ -13,6 +14,9 @@ body {
     --textColor: rgb(181, 185, 214);
     --btnColor: rgb(48, 48, 67);
     --fluoColor: rgb(19, 154, 255);
+
+    --waveColor: rgb(1, 88, 113);
+    --bloodColor: rgb(255, 6, 2);
 
     --btnColorHover: rgb(62, 62, 86);
     --fluoColorHover: rgb(13, 125, 186);
